@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "e2e25c2d-87da-4dc0-88b9-d8aa19ad9f64",
+		"name": "4. Equivalence classes: Age",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Version 1",
+			"item": [
+				{
+					"name": "Age_Europe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let Request_Body = request;",
+									"console.log(Request_Body);",
+									"let Request_Age = Number.parseFloat(request.data.age);",
+									"console.log (Request_Age);",
+									"if (!Number.isInteger(Request_Age)) {",
+									"    pm.test(\"Status code should not 200 when age is not interger.\", function () {",
+									"    console.log(pm.response.code);",
+									"    pm.expect(200).not.to.eql(pm.response.code);",
+									"    }); ",
+									"    return;",
+									"};",
+									"if ((Request_Age >= 0) && (Request_Age <= 17)){ ",
+									"    pm.test(\"Status code should be 200 when age is interger from 0 to 17.\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    if (pm.response.code == 200) {",
+									"        let Response_Body = JSON.parse(responseBody);",
+									"        console.log(Response_Body);",
+									"        let Length_Content = Response_Body.content.length;",
+									"        console.log (Length_Content);",
+									"        let Response_Age = Number.parseInt(Response_Body.age);",
+									"        console.log (Response_Age);",
+									"        let Age_Type = Response_Body.age_type;",
+									"        console.log(Age_Type);",
+									"        pm.test(\"Length of content from response should be equal to 8.\", function () {",
+									"            pm.expect(8).to.eql(Length_Content);",
+									"        });",
+									"        pm.test(\"Age from response should be equal to age from request.\", function () {",
+									"            pm.expect(Response_Age).to.eql(Request_Age);",
+									"        });",
+									"        pm.test(\"Type of age should be underage.\", function () {",
+									"            pm.expect(\"underage\").to.eql(Age_Type);",
+									"        });",
+									"    };",
+									"};",
+									"if ((Request_Age >= 18) && (Request_Age <= 50)){ ",
+									"    pm.test(\"Status code should be 200 when age is interger from 18 to 50.\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    if (pm.response.code == 200) {",
+									"        let Response_Body = JSON.parse(responseBody);",
+									"        console.log(Response_Body);",
+									"        let Length_Content = Response_Body.content.length;",
+									"        console.log (Length_Content);",
+									"        let Response_Age = Number.parseInt(Response_Body.age);",
+									"        console.log (Response_Age);",
+									"        let Age_Type = Response_Body.age_type;",
+									"        console.log(Age_Type);",
+									"        pm.test(\"Length of content from response should be equal to 17.\", function () {",
+									"            pm.expect(17).to.eql(Length_Content);",
+									"        });",
+									"        pm.test(\"Age from response should be equal to age from request.\", function () {",
+									"            pm.expect(Response_Age).to.eql(Request_Age);",
+									"        });",
+									"        pm.test(\"Type of age should be adult.\", function () {",
+									"            pm.expect(\"adult\").to.eql(Age_Type);",
+									"        });",
+									"    };",
+									"};",
+									"if ((Request_Age >= 51) && (Request_Age <= 100)){ ",
+									"    pm.test(\"Status code should be 200 when age is interger from 51 to 100.\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    if (pm.response.code == 200) {",
+									"        let Response_Body = JSON.parse(responseBody);",
+									"        console.log(Response_Body);",
+									"        let Length_Content = Response_Body.content.length;",
+									"        console.log (Length_Content);",
+									"        let Response_Age = Number.parseInt(Response_Body.age);",
+									"        console.log (Response_Age);",
+									"        let Age_Type = Response_Body.age_type;",
+									"        console.log(Age_Type);",
+									"        pm.test(\"Length of content from response should be equal to 8.\", function () {",
+									"            pm.expect(8).to.eql(Length_Content);",
+									"        });",
+									"        pm.test(\"Age from response should be equal to age from request.\", function () {",
+									"            pm.expect(Response_Age).to.eql(Request_Age);",
+									"        });",
+									"        pm.test(\"Type of age should be antiquity.\", function () {",
+									"            pm.expect(\"antiquity\").to.eql(Age_Type);",
+									"        });",
+									"    };",
+									"};",
+									"if ((Request_Age > 100) || (Request_Age < 0)){ ",
+									"    pm.test(\"Status code should not be 200 when age integer less than 0 or more than 100.\", function () {",
+									"    console.log(pm.response.code);",
+									"    pm.expect(200).not.to.eql(pm.response.code);",
+									"    }); ",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "age",
+									"value": "{{age}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "116.203.27.46:5002/age_europe",
+							"host": [
+								"116",
+								"203",
+								"27",
+								"46"
+							],
+							"port": "5002",
+							"path": [
+								"age_europe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Age_Usa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let Request_Body = request;",
+									"console.log(Request_Body);",
+									"let Request_Age = Number.parseFloat(request.data.age);",
+									"console.log (Request_Age);",
+									"if (!Number.isInteger(Request_Age)) {",
+									"    pm.test(\"Status code should not 200 when age is not interger.\", function () {",
+									"    console.log(pm.response.code);",
+									"    pm.expect(200).not.to.eql(pm.response.code);",
+									"    }); ",
+									"    return;",
+									"};",
+									"if ((Request_Age >= 0) && (Request_Age <= 20)){ ",
+									"    pm.test(\"Status code should be 200 when age is interger from 0 to 17.\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    if (pm.response.code == 200) {",
+									"        let Response_Body = JSON.parse(responseBody);",
+									"        console.log(Response_Body);",
+									"        let Length_Content = Response_Body.content.length;",
+									"        console.log (Length_Content);",
+									"        let Response_Age = Number.parseInt(Response_Body.age);",
+									"        console.log (Response_Age);",
+									"        let Age_Type = Response_Body.age_type;",
+									"        console.log(Age_Type);",
+									"        pm.test(\"Length of content from response should be equal to 8.\", function () {",
+									"            pm.expect(8).to.eql(Length_Content);",
+									"        });",
+									"        pm.test(\"Age from response should be equal to age from request.\", function () {",
+									"            pm.expect(Response_Age).to.eql(Request_Age);",
+									"        });",
+									"        pm.test(\"Type of age should be underage.\", function () {",
+									"            pm.expect(\"underage\").to.eql(Age_Type);",
+									"        });",
+									"    };",
+									"};",
+									"if ((Request_Age >= 21) && (Request_Age <= 50)){ ",
+									"    pm.test(\"Status code should be 200 when age is interger from 18 to 50.\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    if (pm.response.code == 200) {",
+									"        let Response_Body = JSON.parse(responseBody);",
+									"        console.log(Response_Body);",
+									"        let Length_Content = Response_Body.content.length;",
+									"        console.log (Length_Content);",
+									"        let Response_Age = Number.parseInt(Response_Body.age);",
+									"        console.log (Response_Age);",
+									"        let Age_Type = Response_Body.age_type;",
+									"        console.log(Age_Type);",
+									"        pm.test(\"Length of content from response should be equal to 17.\", function () {",
+									"            pm.expect(17).to.eql(Length_Content);",
+									"        });",
+									"        pm.test(\"Age from response should be equal to age from request.\", function () {",
+									"            pm.expect(Response_Age).to.eql(Request_Age);",
+									"        });",
+									"        pm.test(\"Type of age should be adult.\", function () {",
+									"            pm.expect(\"adult\").to.eql(Age_Type);",
+									"        });",
+									"    };",
+									"};",
+									"if ((Request_Age >= 51) && (Request_Age <= 100)){ ",
+									"    pm.test(\"Status code should be 200 when age is interger from 51 to 100.\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    if (pm.response.code == 200) {",
+									"        let Response_Body = JSON.parse(responseBody);",
+									"        console.log(Response_Body);",
+									"        let Length_Content = Response_Body.content.length;",
+									"        console.log (Length_Content);",
+									"        let Response_Age = Number.parseInt(Response_Body.age);",
+									"        console.log (Response_Age);",
+									"        let Age_Type = Response_Body.age_type;",
+									"        console.log(Age_Type);",
+									"        pm.test(\"Length of content from response should be equal to 8.\", function () {",
+									"            pm.expect(8).to.eql(Length_Content);",
+									"        });",
+									"        pm.test(\"Age from response should be equal to age from request.\", function () {",
+									"            pm.expect(Response_Age).to.eql(Request_Age);",
+									"        });",
+									"        pm.test(\"Type of age should be antiquity.\", function () {",
+									"            pm.expect(\"antiquity\").to.eql(Age_Type);",
+									"        });",
+									"    };",
+									"};",
+									"if ((Request_Age > 100) || (Request_Age < 0)){ ",
+									"    pm.test(\"Status code should not be 200 when age integer less than 0 or more than 100.\", function () {",
+									"    console.log(pm.response.code);",
+									"    pm.expect(200).not.to.eql(pm.response.code);",
+									"    }); ",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "age",
+									"value": "{{age}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "116.203.27.46:5002/age_usa",
+							"host": [
+								"116",
+								"203",
+								"27",
+								"46"
+							],
+							"port": "5002",
+							"path": [
+								"age_usa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Version 2",
+			"item": [
+				{
+					"name": "Age_Europe function",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let Request_Body = request;",
+									"let Request_Age = Number.parseFloat(Request_Body.data.age);",
+									"if (!Number.isInteger(Request_Age)) {",
+									"    pm.test(\"Status code should not be 200 when age is not integer\", function () {",
+									"    pm.expect(200).not.to.eql(pm.response.code);",
+									"    }); ",
+									"    return;",
+									"};",
+									"",
+									"function checkAge (expLength, expTypOfAge) {",
+									"    pm.test(\"Status code should be 200 when age is integer from 0 to 100\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    });",
+									"    if (pm.response.code == 200) {",
+									"        let Response_Body = JSON.parse(responseBody);",
+									"        console.log(Response_Body);",
+									"        let Length_Content = Response_Body.content.length;",
+									"        console.log (Length_Content);",
+									"        let Response_Age = Number.parseInt(Response_Body.age);",
+									"        console.log (Response_Age);",
+									"        let Age_Type = Response_Body.age_type;",
+									"        console.log(Age_Type);",
+									"        pm.test(\"Length_Content should be equal to \" + expLength + \" when response get code 200\", function () {",
+									"            pm.expect(expLength).to.eql(Length_Content);",
+									"        });",
+									"        pm.test(\"Age from response should be equal to age from request\", function () {",
+									"            pm.expect(Response_Age).to.eql(Request_Age);",
+									"        });",
+									"        pm.test(\"Type of age should be equal to \" + expTypOfAge, function () {",
+									"            pm.expect(expTypOfAge).to.eql(Age_Type);",
+									"        });",
+									"    };",
+									"};",
+									"",
+									"if ((Request_Age >= 0) && (Request_Age <= 17)){ ",
+									"    checkAge(8, \"underage\");    ",
+									"};",
+									"if ((Request_Age >= 18) && (Request_Age <= 50)){ ",
+									"    checkAge(17, \"adult\");",
+									"};",
+									"if ((Request_Age >= 51) && (Request_Age <= 100)){ ",
+									"    checkAge(8, \"antiquity\");",
+									"};",
+									"if ((Request_Age > 100) || (Request_Age < 0)){ ",
+									"    pm.test(\"Status code should not be 200 when age integer less than 0 or more than 100\", function () {",
+									"    console.log(pm.response.code);",
+									"    pm.expect(200).not.to.eql(pm.response.code);",
+									"    }); ",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "age",
+									"value": "{{age}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "116.203.27.46:5002/age_europe",
+							"host": [
+								"116",
+								"203",
+								"27",
+								"46"
+							],
+							"port": "5002",
+							"path": [
+								"age_europe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Age_Usa function",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let Request_Body = request;",
+									"let Request_Age = Number.parseFloat(Request_Body.data.age);",
+									"if (!Number.isInteger(Request_Age)){",
+									"    pm.test(\"Status code should not be 200 when age is not integer\", function () {",
+									"    pm.expect(200).not.to.eql(pm.response.code);",
+									"    });",
+									"    return;",
+									"};",
+									"",
+									"function checkAge(expLength, expTypOfAge) {",
+									"    pm.test(\"Status code should be 200 when age is integer from 0 to 100\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    });",
+									"    if (pm.response.code == 200){",
+									"        let Response_Body = JSON.parse(responseBody);",
+									"        let Length_Content = Response_Body.content.length;",
+									"        let Response_Age = Number.parseInt(Response_Body.age);",
+									"        let Age_Type = Response_Body.age_type;",
+									"        pm.test(\"Length_Content should be equal to \" + expLength + \" when response get code 200\", function () {",
+									"            pm.expect(expLength).to.eql(Length_Content);",
+									"        });",
+									"        pm.test(\"Age from response should be equal to age from request\", function () {",
+									"            pm.expect(Request_Age).to.eql(Response_Age);",
+									"        });",
+									"        pm.test(\"Type of age should be equal to \" + expTypOfAge, function () {",
+									"            pm.expect(expTypOfAge).to.eql(Age_Type);",
+									"        });",
+									"    }; ",
+									"};",
+									"if ((Request_Age >= 0) && (Request_Age <= 20)){ ",
+									"    checkAge(8, \"underage\");    ",
+									"};",
+									"if ((Request_Age >= 21) && (Request_Age <= 50)){ ",
+									"    checkAge(17, \"adult\");",
+									"};",
+									"if ((Request_Age >= 51) && (Request_Age <= 100)){ ",
+									"    checkAge(8, \"antiquity\");",
+									"};",
+									"if ((Request_Age > 100) || (Request_Age < 0)){ ",
+									"    pm.test(\"Status code should not be 200 when age integer less than 0 or more than 100\", function () {",
+									"    pm.expect(200).not.to.eql(pm.response.code);",
+									"    }); ",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "age",
+									"value": "{{age}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "116.203.27.46:5002/age_usa",
+							"host": [
+								"116",
+								"203",
+								"27",
+								"46"
+							],
+							"port": "5002",
+							"path": [
+								"age_usa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
